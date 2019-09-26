@@ -69,8 +69,8 @@ def crabrave(overlay_text):
 
     overlay_text = parse.unquote_plus(overlay_text).strip()
 
-    # check if overlay text is 0-40 chars long
-    if len(overlay_text) == 0 or len(overlay_text) > 40:
+    # check if overlay text is 2-40 chars long
+    if len(overlay_text) < 2 or len(overlay_text) > 40:
         return abort(400)
 
     # generate filename based on selected options
@@ -112,7 +112,7 @@ def inlinequery(update, context):
     # get entered text message
     query = update.inline_query.query.strip()
 
-    if len(query) == 0 or len(query) > 40:
+    if len(query) < 2 or len(query) > 40:
         update.inline_query.answer([])
         return
 
@@ -137,7 +137,7 @@ def inlinequery(update, context):
         InlineQueryResultArticle(
             id=uuid4(),
             title="Bot made by @divadsn",
-            description="Check my source code on GitHub!",
+            description="Check out my source code on GitHub!",
             thumb_url="https://avatars2.githubusercontent.com/u/28547847?s=460&v=4",
             input_message_content=InputTextMessageContent(
                 "https://github.com/divadsn/crabrave-telegram-bot\n\nDonate me via PayPal: https://paypal.me/divadsn",
