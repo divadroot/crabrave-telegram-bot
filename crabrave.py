@@ -113,7 +113,28 @@ def inlinequery(update, context):
     query = update.inline_query.query.strip()
 
     if len(query) < 2 or len(query) > 40:
-        update.inline_query.answer([])
+        update.inline_query.answer([
+            InlineQueryResultArticle(
+                id=uuid4(),
+                title="Not enough arguments",
+                description="Text must be between 2 and 40 characters long.",
+                thumb_url="https://cdn.pixabay.com/photo/2013/07/12/18/09/help-153094__340.png",
+                input_message_content=InputTextMessageContent(
+                    "Usage: @papiezbot <overlay_text>\n\nText must be between 2 and 40 characters long.",
+                    parse_mode=ParseMode.MARKDOWN
+                ),
+            ),
+            InlineQueryResultArticle(
+                id=uuid4(),
+                title="Bot made by @divadsn",
+                description="Check out my source code on GitHub!",
+                thumb_url="https://avatars2.githubusercontent.com/u/28547847?s=460&v=4",
+                input_message_content=InputTextMessageContent(
+                    "https://github.com/divadsn/crabrave-telegram-bot\n\nDonate me via PayPal: https://paypal.me/divadsn",
+                    parse_mode=ParseMode.MARKDOWN
+                ),
+            )
+        ])
         return
 
     # generate query results
