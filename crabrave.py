@@ -36,7 +36,7 @@ if not os.path.isdir("output"):
 
 @app.route("/thumb/<name>.jpg", methods=['GET'])
 def thumbnail(name):
-    return send_file(os.path.join("thumb"), f"{name}.jpg")
+    return send_file(os.path.join("thumb", f"{name}.jpg"))
 
 
 @app.route("/video/<overlay_text>.mp4", methods=['GET'])
