@@ -114,7 +114,6 @@ FFMPEG_COLORS = [
     "plum", 
     "powderblue", 
     "purple", 
-    "random", 
     "red", 
     "rosybrown", 
     "royalblue", 
