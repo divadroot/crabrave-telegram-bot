@@ -130,6 +130,7 @@ def inlinequery(update, context):
             id=uuid4(),
             title="Bot made by @divadsn",
             description="Check my source code on GitHub!",
+            thumb_url="https://avatars2.githubusercontent.com/u/28547847?s=460&v=4",
             input_message_content=InputTextMessageContent(
                 "https://github.com/divadsn/crabrave-telegram-bot\n\nDonate me via PayPal: https://paypal.me/divadsn",
                 parse_mode=ParseMode.MARKDOWN
