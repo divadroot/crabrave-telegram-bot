@@ -121,7 +121,7 @@ def inlinequery(update, context):
         InlineQueryResultVideo(
             id=uuid4(),
             title="🦀🦀 PAPAJ IS GONE 🦀🦀",
-            caption=query,
+            description=query,
             thumb_url=f"{BASE_URL}/thumb/papaj.jpg?t={time.time()}",
             video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=36",
             mime_type="video/mp4"
