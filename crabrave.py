@@ -13,7 +13,7 @@ from flask import Flask, request, send_file, abort
 from waitress import serve
 from colorlist import FFMPEG_COLORS
 
-from telegram import InlineQueryResultVideo, ParseMode, InputTextMessageContent
+from telegram import InlineQueryResultVideo, InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
 # https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words
@@ -125,6 +125,15 @@ def inlinequery(update, context):
             thumb_url=f"{BASE_URL}/thumb/papaj.jpg?t={time.time()}",
             video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=36",
             mime_type="video/mp4"
+        ),
+        InlineQueryResultArticle(
+            id=uuid4(),
+            title="Bot made by @divadsn",
+            description="Check my source code on GitHub!",
+            input_message_content=InputTextMessageContent(
+                "https://github.com/divadsn/crabrave-telegram-bot\n\nDonate me via PayPal: https://paypal.me/divadsn",
+                parse_mode=ParseMode.MARKDOWN
+            ),
         )
     ]
 
