@@ -67,7 +67,7 @@ def crabrave(overlay_text):
     if font_size > 72:
         return abort(400)
 
-    overlay_text = overlay_text.strip()
+    overlay_text = parse.unquote_plus(overlay_text).strip()
 
     # check if overlay text is 0-40 chars long
     if len(overlay_text) == 0 or len(overlay_text) > 40:
