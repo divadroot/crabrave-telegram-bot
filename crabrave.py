@@ -6,6 +6,7 @@ import threading
 import time
 import unicodedata
 import ffmpeg
+import filter
 
 from uuid import uuid4
 from urllib import parse
@@ -16,8 +17,10 @@ from colorlist import FFMPEG_COLORS
 from telegram import InlineQueryResultVideo, InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
-# https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words
-INVALID_FILE_CHARS = '/\\?%*:|"<>'
+ENABLED_FILTERS = { 
+    "classic": filter.classic,
+    "snapchat": filter.snapchat
+}
 
 # enable logging
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
@@ -28,7 +31,7 @@ PORT = int(os.environ.get("PORT", "3000"))
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:3000")
 
 app = Flask(__name__, static_url_path="")
-updater = Updater(BOT_TOKEN, use_context=True)
+#TODO updater = Updater(BOT_TOKEN, use_context=True)
 
 if not os.path.isdir("output"):
     os.path.mkdir("output")
@@ -67,6 +70,12 @@ def crabrave(overlay_text):
     if font_size > 72:
         return abort(400)
 
+    filter_name = request.args.get("filter", default="snapchat")
+
+    # check if filter is enabled
+    if filter_name not in ENABLED_FILTERS:
+        return abort(400)
+
     overlay_text = parse.unquote_plus(overlay_text).strip()
 
     # check if overlay text is 2-40 chars long
@@ -74,7 +83,7 @@ def crabrave(overlay_text):
         return abort(400)
 
     # generate filename based on selected options
-    filename = f"{style}-{secure_filename(overlay_text)}_{font}_{font_color}_{font_size}.mp4"
+    filename = f"{style}-{secure_filename(overlay_text)}_{font}_{font_color}_{font_size}_{filter_name}.mp4"
 
     # check if video has already been rendered
     output_file = os.path.join("output", filename)
@@ -82,29 +91,15 @@ def crabrave(overlay_text):
         return send_file(output_file)
 
     # render video
-    box_height = int(font_size * 1.5)
+    selected_filter = ENABLED_FILTERS[filter_name]
     input_stream = ffmpeg.input(input_file)
-    (
-        input_stream.drawbox(
-            x="0",
-            y="(ih-h)/2",
-            color="black@0.5",
-            width="iw",
-            height=str(box_height),
-            t="fill"
-        )
-        .drawtext( 
-            x="(w-text_w)/2",
-            y="(h-text_h)/2",
-            text=overlay_text, 
-            fontfile=font_file,
-            fontcolor=str(font_color),
-            fontsize=str(font_size),
-        )
-        .output(input_stream.audio, output_file, **{"codec:a": "copy"})
-        .run()
+    output = ffmpeg.output(
+        selected_filter.apply_filter(input_stream, overlay_text, font_file, font_color, font_size), 
+        input_stream.audio, 
+        output_file
     )
 
+    output.run()
     return send_file(output_file)
             
 
@@ -180,7 +175,7 @@ def secure_filename(filename):
             output[pos] = 'l'
 
     # remove unallowed characters
-    output = [c if c not in INVALID_FILE_CHARS else '_' for c in output]
+    output = [c if c not in '/\\?%*:|"<>' else '_' for c in output]
     return "".join(output).encode("ASCII", "ignore").decode().replace(" ", "_")
 
 
@@ -194,16 +189,18 @@ def start_bot():
 
 
 def main():
+    """
     print("Starting Telegram bot...")
     bot = threading.Thread(target=start_bot)
     bot.start()
+    """
     
     # start web server and idle
     print(f"Listening on {BASE_URL} for requests, press CTRL+C to stop")
     serve(app, port=PORT, _quiet=True)
 
     # finish thread by stopping the bot
-    updater.stop()
+    #TODO updater.stop()
 
 
 if __name__ == '__main__':
