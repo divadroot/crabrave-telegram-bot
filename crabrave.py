@@ -64,13 +64,13 @@ def crabrave(overlay_text):
     if font_color not in FFMPEG_COLORS:
         return abort(400)
 
-    font_size = request.args.get("size", default=36, type=int)
+    font_size = request.args.get("size", default=48, type=int)
 
     # check if text size is in range
     if font_size > 72:
         return abort(400)
 
-    filter_name = request.args.get("filter", default="snapchat")
+    filter_name = request.args.get("filter", default="classic")
 
     # check if filter is enabled
     if filter_name not in ENABLED_FILTERS:
