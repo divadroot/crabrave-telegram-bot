@@ -129,7 +129,7 @@ def inlinequery(update, context):
             title="🦀🦀 PAPAJ IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/papaj.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=36",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=52&filter=classic",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -137,7 +137,7 @@ def inlinequery(update, context):
             title="🦀🦀 DESPACITO IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/classic.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=classic&font=raleway&color=white&size=36",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=classic&font=raleway&color=white&size=52&filter=classic",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -145,7 +145,7 @@ def inlinequery(update, context):
             title="🦀🦀 KEBAB IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/kebab.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=kebab&font=impact&color=white&size=36",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=kebab&font=impact&color=white&size=48&filter=snapchat",
             mime_type="video/mp4"
         ),
         InlineQueryResultArticle(
