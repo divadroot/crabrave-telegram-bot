@@ -6,20 +6,20 @@ import threading
 import time
 import unicodedata
 import ffmpeg
-import filter
 
 from uuid import uuid4
 from urllib import parse
 from flask import Flask, request, send_file, abort
 from waitress import serve
 from colorlist import FFMPEG_COLORS
+from filter import *
 
 from telegram import InlineQueryResultVideo, InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
 ENABLED_FILTERS = { 
-    "classic": filter.classic,
-    "snapchat": filter.snapchat
+    "classic": classic,
+    "snapchat": snapchat
 }
 
 # enable logging
@@ -31,7 +31,7 @@ PORT = int(os.environ.get("PORT", "3000"))
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:3000")
 
 app = Flask(__name__, static_url_path="")
-#TODO updater = Updater(BOT_TOKEN, use_context=True)
+updater = Updater(BOT_TOKEN, use_context=True)
 
 if not os.path.isdir("output"):
     os.path.mkdir("output")
@@ -189,18 +189,16 @@ def start_bot():
 
 
 def main():
-    """
     print("Starting Telegram bot...")
     bot = threading.Thread(target=start_bot)
     bot.start()
-    """
     
     # start web server and idle
     print(f"Listening on {BASE_URL} for requests, press CTRL+C to stop")
     serve(app, port=PORT, _quiet=True)
 
     # finish thread by stopping the bot
-    #TODO updater.stop()
+    updater.stop()
 
 
 if __name__ == '__main__':
