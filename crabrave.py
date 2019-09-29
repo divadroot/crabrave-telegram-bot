@@ -19,7 +19,10 @@ from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
 ENABLED_FILTERS = { 
     "classic": classic,
-    "snapchat": snapchat
+    "simple": simple,
+    "snapchat": snapchat,
+    "textbox": textbox,
+    "topbottom": topbottom
 }
 
 # enable logging
@@ -192,7 +195,7 @@ def main():
     print("Starting Telegram bot...")
     bot = threading.Thread(target=start_bot)
     bot.start()
-    
+
     # start web server and idle
     print(f"Listening on {BASE_URL} for requests, press CTRL+C to stop")
     serve(app, port=PORT, _quiet=True)
