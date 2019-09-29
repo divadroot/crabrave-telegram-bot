@@ -151,6 +151,14 @@ def inlinequery(update, context):
             video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=kebab&font=impact&color=white&size=48&filter=snapchat",
             mime_type="video/mp4"
         ),
+        InlineQueryResultVideo(
+            id=uuid4(),
+            title="🦀🦀 STONOGA IS GONE 🦀🦀",
+            description=query,
+            thumb_url=f"{BASE_URL}/thumb/stonoga.jpg?t={time.time()}",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=stonoga&font=timesnewroman&color=white&size=48&filter=topbottom",
+            mime_type="video/mp4"
+        ),
         InlineQueryResultArticle(
             id=uuid4(),
             title="Bot made by @divadsn",
