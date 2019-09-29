@@ -4,7 +4,8 @@ import os
 import logging
 import threading
 import time
-import unicodedata
+import json
+import hashlib
 import ffmpeg
 
 from uuid import uuid4
@@ -86,7 +87,7 @@ def crabrave(overlay_text):
         return abort(400)
 
     # generate filename based on selected options
-    filename = f"{style}-{secure_filename(overlay_text)}_{font}_{font_color}_{font_size}_{filter_name}.mp4"
+    filename = f"{generate_filename(style, overlay_text, font, font_color, font_size, filter_name)}.mp4"
 
     # check if video has already been rendered
     output_file = os.path.join("output", filename)
@@ -174,20 +175,18 @@ def inlinequery(update, context):
     update.inline_query.answer(results)
 
 
-def secure_filename(filename):
-    # keep only valid ascii chars
-    output = list(unicodedata.normalize("NFKD", filename))
+def generate_filename(style, overlay_text, font, font_color, font_size, filter_name):
+    # generate sha256 hash based on selected parameters
+    selection = {
+        "style": style,
+        "overlay_text": overlay_text,
+        "font": font,
+        "font_color": font_color,
+        "font_size": font_size,
+        "filter_name": filter_name
+    }
 
-    # special case characters that don't get stripped by the above technique
-    for pos, char in enumerate(output):
-        if char == '\u0141':
-            output[pos] = 'L'
-        elif char == '\u0142':
-            output[pos] = 'l'
-
-    # remove unallowed characters
-    output = [c if c not in '/\\?%*:|"<>' else '_' for c in output]
-    return "".join(output).encode("ASCII", "ignore").decode().replace(" ", "_")
+    return hashlib.sha256(json.dumps(selection).encode("utf-8")).hexdigest()
 
 
 def start_bot():    
