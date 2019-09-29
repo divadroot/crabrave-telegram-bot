@@ -18,6 +18,7 @@ from filter import *
 from telegram import InlineQueryResultVideo, InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
+
 ENABLED_FILTERS = { 
     "classic": classic,
     "simple": simple,
@@ -100,7 +101,8 @@ def crabrave(overlay_text):
     output = ffmpeg.output(
         selected_filter.apply_filter(input_stream, overlay_text, font_file, font_color, font_size), 
         input_stream.audio, 
-        output_file
+        output_file,
+        **{"codec:a": "copy"}
     )
 
     output.run()
