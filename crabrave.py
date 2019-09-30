@@ -166,7 +166,7 @@ def inlinequery(update, context):
             title="🦀🦀 FICHTL IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/woodys.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=52&filter=classic",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=woodys&font=comicsans&color=white&size=52&filter=classic",
             mime_type="video/mp4"
         ),
         InlineQueryResultArticle(
