@@ -18,8 +18,7 @@ from filter import *
 from telegram import InlineQueryResultVideo, InlineQueryResultArticle, ParseMode, InputTextMessageContent
 from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 
-
-ENABLED_FILTERS = { 
+ENABLED_FILTERS = {
     "classic": classic,
     "simple": simple,
     "snapchat": snapchat,
@@ -99,15 +98,15 @@ def crabrave(overlay_text):
     selected_filter = ENABLED_FILTERS[filter_name]
     input_stream = ffmpeg.input(input_file)
     output = ffmpeg.output(
-        selected_filter.apply_filter(input_stream, overlay_text, font_file, font_color, font_size), 
-        input_stream.audio, 
+        selected_filter.apply_filter(input_stream, overlay_text, font_file, font_color, font_size),
+        input_stream.audio,
         output_file,
         **{"codec:a": "copy"}
     )
 
     output.run()
     return send_file(output_file)
-            
+
 
 def inlinequery(update, context):
     # get entered text message
@@ -162,6 +161,14 @@ def inlinequery(update, context):
             video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=stonoga&font=timesnewroman&color=white&size=48&filter=topbottom",
             mime_type="video/mp4"
         ),
+        InlineQueryResultVideo(
+            id=uuid4(),
+            title="🦀🦀 FICHTL IS GONE 🦀🦀",
+            description=query,
+            thumb_url=f"{BASE_URL}/thumb/woodys.jpg?t={time.time()}",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=woodys&font=comicsans&color=white&size=52&filter=classic",
+            mime_type="video/mp4"
+        ),
         InlineQueryResultArticle(
             id=uuid4(),
             title="Bot made by @divadsn",
@@ -191,7 +198,7 @@ def generate_filename(style, overlay_text, font, font_color, font_size, filter_n
     return hashlib.sha256(json.dumps(selection).encode("utf-8")).hexdigest()
 
 
-def start_bot():    
+def start_bot():
     # add inlinequery handler
     dp = updater.dispatcher
     dp.add_handler(InlineQueryHandler(inlinequery))
