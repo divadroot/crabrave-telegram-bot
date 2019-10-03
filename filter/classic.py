@@ -1,6 +1,6 @@
 # Classic crab rave text filter
 def apply_filter(input_stream, overlay_text, font_file, font_color, font_size):
-    text_lines = overlay_text.split("\\n")
+    text_lines = overlay_text.split("\n")
     text_shadow = int(font_size / 16)
 
     # ffmpeg does not support multiline text with vertical align
