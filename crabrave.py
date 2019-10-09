@@ -169,6 +169,14 @@ def inlinequery(update, context):
             video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=woodys&font=potsdam&color=white&size=52&filter=classic",
             mime_type="video/mp4"
         ),
+        InlineQueryResultVideo(
+            id=uuid4(),
+            title="🦀🦀 RONNIE FERRARI IS GONE 🦀🦀",
+            description=query,
+            thumb_url=f"{BASE_URL}/thumb/onabytakchciala.jpg?t={time.time()}",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=onabytakchciala&font=comicsans&color=white&size=52&filter=snapchat",
+            mime_type="video/mp4"
+        ),
         InlineQueryResultArticle(
             id=uuid4(),
             title="Bot made by @divadsn",
