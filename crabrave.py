@@ -41,6 +41,11 @@ if not os.path.isdir("output"):
     os.path.mkdir("output")
 
 
+@app.route("/")
+def index():
+    return app.send_static_file("index.html")
+
+
 @app.route("/thumb/<name>.jpg", methods=['GET'])
 def thumbnail(name):
     return send_file(os.path.join("thumb", f"{name}.jpg"))

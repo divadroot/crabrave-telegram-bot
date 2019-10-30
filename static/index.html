@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="David Sn, MattRoot and other GitHub contributors">
+    <meta name="generator" content="crabrave-telegram-bot">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Crabrave Telegram Bot</title>
+</head>
+
+<body>
+    <main role="main" class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="jumbotron">
+                    <div class="text-center mb-4">
+                        <h1>Crabrave Telegram Bot</h1>
+                        <h3><small>It's a tool for adding things to crabrave</small></h3>
+                    </div>
+
+                    <form action="#" id="generator" autocomplete="off">
+                        <div class="alert alert-danger alert-dismissible" id="error" role="alert" style="display: none">
+                            Invalid request, please check your fields again.
+                            <button type="button" class="close" data-hide="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="inputText">Text to overlay (\n for newline)</label>
+                                <input type="text" class="form-control" id="inputText" placeholder="Enter text to overlay" required>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputStyle">Select style</label>
+                                <select class="form-control" id="inputStyle" required>
+                                    <option value="classic" selected="selected">Classic</option>
+                                    <option value="papaj">Jan Paweł II</option>
+                                    <option value="kebab">Remove Kebab</option>
+                                    <option value="stonoga">Stonoga at piano</option>
+                                    <option value="woodys">Fichtl's Lied</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="inputFont">Text font</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="inputFont" style="width: 75%" required>
+                                        <option value="comicsans">Comic Sans MS</option>
+                                        <option value="impact">Impact</option>
+                                        <option value="potsdam">Potsdam</option>
+                                        <option value="raleway" selected="selected">Raleway</option>
+                                        <option value="spacemono">Space Mono</option>
+                                        <option value="timesnewroman">Times New Roman</option>
+                                    </select>
+                                    <input type="number" class="form-control" id="inputSize" min="12" max="96" value="56" style="width: 25%" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="inputColor">Text color <a href="https://git.io/JezLx" target="_blank">(?)</a></label>
+                                <input type="text" class="form-control" id="inputColor" value="white" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="inputFilter">Text filter (PRO users only)</label>
+                            <select class="form-control" id="inputFilter" required>
+                                <option value="classic" selected="selected">Classic crabrave text style</option>
+                                <option value="snapchat">Snapchat-like text with horizontal box</option>
+                                <option value="topbottom">Top text bottom text style</option>
+                                <option value="textbox">Centered text with box</option>
+                                <option value="simple">Just text on center, nothing more</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="btnSubmit">Generate video</button>
+                    </form>
+
+                    <div id="result" style="display: none">
+                        <div class="embed-responsive embed-responsive-16by9 mb-3">
+                            <video id="preview" controls loop>
+                                <source src="http://crabrave.codebucket.de/video/2137.mp4" type="video/mp4" />
+                                Your browser does not support HTML5 video playback
+                            </video>
+                        </div>
+
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control" id="inputUrl" placeholder="Share video link to others">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button" id="btnCopy">Copy link</button>
+                            </div>
+                        </div>
+
+                        <button id="btnBack" class="btn btn-success btn-block">Generate new video</button>
+                    </div>
+
+                    <hr>
+                    <p class="small" style="margin-bottom: 0">
+                        Source: https://github.com/divadsn/crabrave-telegram-bot</br>
+                        Made with love by David Sn, hosted by Razex.de
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
