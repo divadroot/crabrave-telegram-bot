@@ -1,4 +1,5 @@
 python-telegram-bot
 ffmpeg-python
 flask
+flask-redis
 waitress
