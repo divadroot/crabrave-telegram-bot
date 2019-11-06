@@ -206,17 +206,18 @@ def inlinequery(update, context):
 
 
 def generate_filename(style, overlay_text, font, font_color, font_size, filter_name):
-    # generate sha256 hash based on selected parameters
+    # generate md5 hash based on selected parameters
     selection = {
-        "style": style,
-        "overlay_text": overlay_text,
-        "font": font,
-        "font_color": font_color,
-        "font_size": font_size,
-        "filter_name": filter_name
+        overlay_text: {
+            "style": style,
+            "font": font,
+            "size": font_size,
+            "color": font_color,
+            "filter": filter_name
+        }
     }
 
-    return hashlib.sha256(json.dumps(selection).encode("utf-8")).hexdigest()
+    return hashlib.md5(json.dumps(selection).encode("utf-8")).hexdigest()
 
 
 def start_bot():
