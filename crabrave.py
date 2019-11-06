@@ -87,8 +87,8 @@ def crabrave(overlay_text):
 
     overlay_text = parse.unquote_plus(overlay_text).strip()
 
-    # check if overlay text is 2-40 chars long
-    if len(overlay_text) < 2 or len(overlay_text) > 40:
+    # check if overlay text is 2-120 chars long
+    if len(overlay_text) < 2 or len(overlay_text) > 120:
         return abort(400)
 
     # generate filename based on selected options
