@@ -67,16 +67,16 @@ def crabrave(overlay_text):
     if not os.path.exists(font_file):
         return abort(400)
 
+    font_size = request.args.get("size", default=48, type=int)
+
+    # check if text size is in range
+    if font_size > 96:
+        return abort(400)
+
     font_color = request.args.get("color", default="white")
 
     # check if text color is available
     if font_color not in FFMPEG_COLORS:
-        return abort(400)
-
-    font_size = request.args.get("size", default=48, type=int)
-
-    # check if text size is in range
-    if font_size > 72:
         return abort(400)
 
     filter_name = request.args.get("filter", default="classic")
