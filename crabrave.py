@@ -139,7 +139,7 @@ def inlinequery(update, context):
             title="🦀🦀 PAPAJ IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/papaj.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=52&filter=classic",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=papaj&font=comicsans&color=white&size=52&filter=classic&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -147,7 +147,7 @@ def inlinequery(update, context):
             title="🦀🦀 DESPACITO IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/classic.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=classic&font=raleway&color=white&size=52&filter=classic",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=classic&font=raleway&color=white&size=52&filter=classic&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -155,7 +155,7 @@ def inlinequery(update, context):
             title="🦀🦀 KEBAB IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/kebab.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=kebab&font=impact&color=white&size=48&filter=snapchat",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=kebab&font=impact&color=white&size=48&filter=snapchat&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -163,7 +163,7 @@ def inlinequery(update, context):
             title="🦀🦀 STONOGA IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/stonoga.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=stonoga&font=timesnewroman&color=white&size=48&filter=topbottom",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=stonoga&font=timesnewroman&color=white&size=48&filter=topbottom&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -171,7 +171,7 @@ def inlinequery(update, context):
             title="🦀🦀 FICHTL IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/woodys.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=woodys&font=potsdam&color=white&size=52&filter=classic",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=woodys&font=potsdam&color=white&size=52&filter=classic&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -179,7 +179,7 @@ def inlinequery(update, context):
             title="🦀🦀 RONNIE FERRARI IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/onabytakchciala.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=onabytakchciala&font=comicsans&color=white&size=52&filter=snapchat",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=onabytakchciala&font=comicsans&color=white&size=52&filter=snapchat&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultVideo(
@@ -187,7 +187,7 @@ def inlinequery(update, context):
             title="🦀🦀 BAG RAIDERS IS GONE 🦀🦀",
             description=query,
             thumb_url=f"{BASE_URL}/thumb/shootingstars.jpg?t={time.time()}",
-            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=shootingstars&font=spacemono&color=white&size=52&filter=simple",
+            video_url=f"{BASE_URL}/video/{parse.quote_plus(query)}.mp4?style=shootingstars&font=spacemono&color=white&size=52&filter=simple&t={time.time()}",
             mime_type="video/mp4"
         ),
         InlineQueryResultArticle(
