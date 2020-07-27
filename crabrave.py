@@ -125,7 +125,7 @@ def inlinequery(update, context):
                 description="Text must be between 2 and 40 characters long.",
                 thumb_url="https://cdn.pixabay.com/photo/2013/07/12/18/09/help-153094__340.png",
                 input_message_content=InputTextMessageContent(
-                    "Usage: @papiezbot <overlay text>\n\nText must be between 2 and 40 characters long.",
+                    "Usage: @isgonebot <overlay text>\n\nText must be between 2 and 40 characters long.",
                     parse_mode=ParseMode.MARKDOWN
                 )
             )
